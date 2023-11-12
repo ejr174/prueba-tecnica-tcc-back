@@ -4,7 +4,7 @@ import { error } from 'console';
 import { get } from 'http';
 import { Clientes } from 'src/models/clientes.model';
 
-@Controller('clientes')
+@Controller('Clientes')
 export class ClientesController {
     constructor (private clientesService : ClientesService){
 

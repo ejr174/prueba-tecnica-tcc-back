@@ -13,7 +13,7 @@ export class TypeormService implements TypeOrmOptionsFactory {
         password: '15f54lmp........',
         port: 1433,
         database: 'dbPruebaTecnicaTCC',
-        //synchronize: false,
+        synchronize: true,
         entities: ['dist/**/*.model.{ts,js}'],
       };
       
