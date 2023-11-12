@@ -1,21 +1,28 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
-export class Clientes {
-    @PrimaryColumn()
-    clienteID : number;
-    @Column()
-    numeroIdentificacion : string;
-    @Column()
-    nombre : string;
-    @Column()
-    correoElectronico : string;
-    @Column()
-    telefono : string;
-    @Column()
-    fechaRegistro : string;
-    @Column()
-    tipoIdentificacionID : number;
-    @Column()
-    generoID : number   ;
+@Entity('Cliente') // Nombre de la tabla en la base de datos
+export class Cliente {
+  @PrimaryGeneratedColumn() // Columna de clave primaria generada automáticamente
+  ClienteID: number;
+
+  @Column()
+  TipoIdentificacionID: number;
+
+  @Column({ length: 20 })
+  NumeroIdentificacion: string;
+
+  @Column({ length: 100 })
+  Nombre: string;
+
+  @Column()
+  GeneroID: number;
+
+  @Column({ length: 100 })
+  CorreoElectronico: string;
+
+  @Column({ length: 20 })
+  Telefono: string;
+
+  @Column({ type: 'datetime' }) // Tipo de columna específico para DATETIME
+  FechaRegistro: Date;
 }

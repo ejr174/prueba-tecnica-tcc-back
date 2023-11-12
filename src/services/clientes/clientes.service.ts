@@ -1,23 +1,23 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Clientes } from 'src/models/clientes.model';
+import { Cliente } from 'src/models/clientes.model';
 import { Repository } from 'typeorm';
 
 @Injectable()
 export class ClientesService {
     constructor(
-        @InjectRepository(Clientes) private clientesRepository : Repository<Clientes>
+        @InjectRepository(Cliente) private clientesRepository : Repository<Cliente>
     ){}
 
-    async findAll() : Promise<Clientes[]>{
+    async findAll() : Promise<Cliente[]>{
         return await this.clientesRepository.find()
     }
 
-    async create(cliente : Clientes) : Promise<Clientes>{
+    async create(cliente : Cliente) : Promise<Cliente>{
         return await this.clientesRepository.save(cliente)
     }    
 
-    async update(cliente : Clientes) : Promise<Clientes>{
+    async update(cliente : Cliente) : Promise<Cliente>{
         return await this.clientesRepository.save(cliente)
     }        
 

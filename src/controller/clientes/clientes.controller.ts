@@ -2,7 +2,7 @@ import { Controller, HttpException, HttpStatus, Get, Post, Put, Delete, Body, Pa
 import { ClientesService } from '../../services/clientes/clientes.service';
 import { error } from 'console';
 import { get } from 'http';
-import { Clientes } from 'src/models/clientes.model';
+import { Cliente } from 'src/models/clientes.model';
 
 @Controller('Clientes')
 export class ClientesController {
@@ -24,7 +24,7 @@ export class ClientesController {
 
     //CREAR CLIENTE
     @Post()
-    save(@Body() cliente : Clientes){
+    save(@Body() cliente : Cliente){
         return this.clientesService.create(cliente)
         .then(res =>{
             return {success : true, data: res}
@@ -36,7 +36,7 @@ export class ClientesController {
     
     //ACTUALIZAR CLIENTE
     @Post('/uptdate')
-    update(@Body() cliente : Clientes){
+    update(@Body() cliente : Cliente){
         return this.clientesService.update(cliente)
         .then(res =>{
             return {success : true, data: res}
