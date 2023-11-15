@@ -47,14 +47,15 @@ export class ClientesController {
     }
     
     //ELIMINAR CLIENTE
-    @Get('/delete/:id')
-    delete(@Param('id') id){
+    @Delete('/delete/:id')
+    delete(@Param('id') id: number): Promise<any> {
         return this.clientesService.delete(id)
-        .then(res =>{
-            return {success : true, data: res}
-        })
-        .catch(error =>{
-            throw new HttpException(error, HttpStatus.INTERNAL_SERVER_ERROR)
-        })
-    }      
+            .then(res => {
+                return { success: true, data: res };
+            })
+            .catch(error => {
+                throw new HttpException(error, HttpStatus.INTERNAL_SERVER_ERROR);
+            });
+    }
+        
 }
