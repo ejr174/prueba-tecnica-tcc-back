@@ -10,7 +10,7 @@ export class ClientesService {
     ){}
 
     async findAll() : Promise<Cliente[]>{
-        return await this.clientesRepository.find()
+        return this.clientesRepository.query('EXEC sp_ReadCliente')
     }
 
     async create(cliente: Cliente): Promise<Cliente> {
@@ -19,7 +19,7 @@ export class ClientesService {
             return savedCliente;
         } catch (error) {
             console.error('Error al guardar el cliente:', error);
-            throw error; // Puedes personalizar cómo manejas el error según tus necesidades
+            throw error; 
         }
     }
     
@@ -29,7 +29,6 @@ export class ClientesService {
 
     async delete(id : number) : Promise<string>{
         await this.clientesRepository.delete(id)
-
         return 'OK'
     }        
 }
