@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Cliente } from 'src/models/clientes.model';
-import { Repository } from 'typeorm';
+import { Repository, UpdateResult } from 'typeorm';
 
 @Injectable()
 export class ClientesService {
@@ -13,12 +13,18 @@ export class ClientesService {
         return await this.clientesRepository.find()
     }
 
-    async create(cliente : Cliente) : Promise<Cliente>{
-        return await this.clientesRepository.save(cliente)
-    }    
-
-    async update(cliente : Cliente) : Promise<Cliente>{
-        return await this.clientesRepository.save(cliente)
+    async create(cliente: Cliente): Promise<Cliente> {
+        try {
+            const savedCliente = await this.clientesRepository.save(cliente);
+            return savedCliente;
+        } catch (error) {
+            console.error('Error al guardar el cliente:', error);
+            throw error; // Puedes personalizar cómo manejas el error según tus necesidades
+        }
+    }
+    
+    async update(id: number, cliente : Cliente) : Promise<UpdateResult>{
+        return await this.clientesRepository.update(id, cliente)
     }        
 
     async delete(id : number) : Promise<string>{

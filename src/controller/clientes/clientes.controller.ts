@@ -33,18 +33,18 @@ export class ClientesController {
             throw new HttpException(error, HttpStatus.INTERNAL_SERVER_ERROR)
         })
     } 
-    
+        
     //ACTUALIZAR CLIENTE
-    @Post('/uptdate')
-    update(@Body() cliente : Cliente){
-        return this.clientesService.update(cliente)
-        .then(res =>{
-            return {success : true, data: res}
-        })
-        .catch(error =>{
-            throw new HttpException(error, HttpStatus.INTERNAL_SERVER_ERROR)
-        })
-    }     
+    @Put('/:id')
+    update(@Param('id') id: string, @Body() cliente: Cliente) {
+        return this.clientesService.update(+id, cliente)
+            .then(res => {
+                return { success: true, data: res };
+            })
+            .catch(error => {
+                throw new HttpException(error, HttpStatus.INTERNAL_SERVER_ERROR);
+            });
+    }
     
     //ELIMINAR CLIENTE
     @Get('/delete/:id')
